@@ -1,0 +1,6 @@
+.envrc
+.idea/
+/target
+/log
+
+Cargo.lock
