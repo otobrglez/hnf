@@ -1,39 +1,33 @@
+use std::error::Error;
+
+use futures::{Future, Stream, StreamExt};
 use log::debug;
 
-use crate::hn_client::HNClient;
+use crate::hn_client::Item;
+use crate::hn_client2::HNClient2;
 
 mod config;
 mod hn_client;
+mod hn_client2;
 mod hn_error;
 
-fn main() {
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
     let logger_path = "config/log4rs.yml";
     log4rs::init_file(logger_path, Default::default()).unwrap();
-
     debug!("Booting with logger configuration from {}", logger_path);
 
-    let size = 10;
-    let mut ht_client = HNClient::new();
-    let item_ids: Vec<_> = ht_client
-        .top_stories()
-        .expect("Failed getting stories")
-        .into_iter()
-        .clone()
-        .take(size)
-        .collect();
+    let stories: Vec<Item> = HNClient2::collect_with(10, HNClient2::top_stories).await;
 
-    for (i, item) in item_ids
-        .into_iter()
-        .clone()
-        .map(|item_id| ht_client.clone().item(&item_id).unwrap())
-        .enumerate()
-    {
+    for (i, item) in stories.iter().enumerate() {
         println!(
             "{} - [{:?}] {:?} @ {:?}",
             i + 1,
             item.item_type,
             item.title,
-            item.url.ok_or("none")
+            item.url
         )
     }
+
+    Ok(())
 }
