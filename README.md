@@ -1,4 +1,4 @@
-# hnf - The Hacker News Feed watcher
+# hnf - The Hacker News Feed watcher 🦀
 
 `hnf` watches Hacker News feed and tells you when something was changed.
 
