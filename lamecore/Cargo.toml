@@ -1,0 +1,15 @@
+[package]
+name = "lamecore"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+log = { workspace = true }
+chrono = { workspace = true }
+futures = { workspace = true }
+log4rs = { workspace = true }
+reqwest = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+ureq = { workspace = true }

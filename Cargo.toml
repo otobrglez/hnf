@@ -1,10 +1,16 @@
-[package]
-name = "hnf"
+[workspace]
+members = [
+    "lamecore",
+    "sandbox01"
+]
+resolver = "2"
+
+[workspace.package]
 authors = ["Oto Brglez <otobrglez@gmail.com>"]
 version = "0.0.1"
 edition = "2021"
 
-[dependencies]
+[workspace.dependencies]
 chrono = { version = "0.4.33", features = ["serde"] }
 clap = { version = "4.4.18", features = ["derive"] }
 futures = "0.3.30"

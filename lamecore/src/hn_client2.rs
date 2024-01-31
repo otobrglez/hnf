@@ -2,7 +2,7 @@ use futures::{stream, StreamExt};
 use reqwest::get;
 
 use crate::config::hn_api_url;
-use crate::hn_client::{Item, ItemId};
+use crate::models::{Item, ItemId};
 
 pub struct HNClient2 {}
 impl HNClient2 {

@@ -1,15 +1,9 @@
 use std::error::Error;
 
-use futures::{Future, Stream, StreamExt};
 use log::debug;
 
-use crate::hn_client::Item;
-use crate::hn_client2::HNClient2;
-
-mod config;
-mod hn_client;
-mod hn_client2;
-mod hn_error;
+use lamecore::hn_client2::HNClient2;
+use lamecore::models::Item;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
